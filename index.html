@@ -526,51 +526,38 @@
                     <p class="eyebrow">Rooms</p>
                     <h2>Choose your room type.</h2>
                 </div>
-                <p>Use the booking form to request dates. The hotel team can confirm exact availability, tariff and payment details on WhatsApp.</p>
+                <p>Choose between AC and Non-AC double-bed rooms. The hotel team can confirm exact availability and payment details on WhatsApp.</p>
             </div>
             <div class="room-grid">
                 <article class="room-card">
-                    <img src="Images/rooms/standard-room.jfif" alt="Standard double room at Kanak Resident and Hotel">
+                    <img src="Images/rooms/deluxe-room.jfif" alt="AC double bed room at Kanak Resident and Hotel">
                     <div class="room-body">
-                        <h3>Standard Double Room</h3>
-                        <p>A neat double-bed room for short stays, business travel and family stopovers.</p>
+                        <h3>AC Double Bed Room</h3>
+                        <p>Comfortable double-bed room with air conditioning, attached bath and sitting space.</p>
                         <div class="room-meta">
                             <span>2 guests</span>
+                            <span>AC</span>
+                            <span>Double bed</span>
+                            <span>Sitting area</span>
+                        </div>
+                        <div class="price">Rs 1,700 <small>/ night</small></div>
+                        <button type="button" data-room="AC Double Bed Room">Book this room</button>
+                    </div>
+                </article>
+
+                <article class="room-card">
+                    <img src="Images/rooms/standard-room.jfif" alt="Non-AC double room at Kanak Resident and Hotel">
+                    <div class="room-body">
+                        <h3>Non-AC Double Bed Room</h3>
+                        <p>Neat double-bed room for short stays, family stopovers and budget-friendly booking.</p>
+                        <div class="room-meta">
+                            <span>2 guests</span>
+                            <span>Non-AC</span>
                             <span>Double bed</span>
                             <span>Attached bath</span>
                         </div>
-                        <div class="price">From Rs 1,200 <small>/ night</small></div>
-                        <button type="button" data-room="Standard Double Room">Book this room</button>
-                    </div>
-                </article>
-
-                <article class="room-card">
-                    <img src="Images/rooms/deluxe-room.jfif" alt="Deluxe AC room at Kanak Resident and Hotel">
-                    <div class="room-body">
-                        <h3>Deluxe AC Room</h3>
-                        <p>Spacious room with AC, sitting space and a comfortable layout for longer stays.</p>
-                        <div class="room-meta">
-                            <span>2 guests</span>
-                            <span>AC</span>
-                            <span>Sitting area</span>
-                        </div>
-                        <div class="price">From Rs 1,800 <small>/ night</small></div>
-                        <button type="button" data-room="Deluxe AC Room">Book this room</button>
-                    </div>
-                </article>
-
-                <article class="room-card">
-                    <img src="Images/rooms/suite-room.jfif" alt="Family suite room at Kanak Resident and Hotel">
-                    <div class="room-body">
-                        <h3>Family Suite</h3>
-                        <p>A larger room option with sofa seating, ideal for families and wedding guests.</p>
-                        <div class="room-meta">
-                            <span>3-4 guests</span>
-                            <span>AC</span>
-                            <span>Lounge seating</span>
-                        </div>
-                        <div class="price">From Rs 2,500 <small>/ night</small></div>
-                        <button type="button" data-room="Family Suite">Book this room</button>
+                        <div class="price">Rs 1,300 <small>/ night</small></div>
+                        <button type="button" data-room="Non-AC Double Bed Room">Book this room</button>
                     </div>
                 </article>
             </div>
@@ -590,9 +577,8 @@
                         <label>
                             Room type
                             <select id="roomType" required>
-                                <option value="Standard Double Room">Standard Double Room</option>
-                                <option value="Deluxe AC Room">Deluxe AC Room</option>
-                                <option value="Family Suite">Family Suite</option>
+                                <option value="AC Double Bed Room">AC Double Bed Room - Rs 1,700/night</option>
+                                <option value="Non-AC Double Bed Room">Non-AC Double Bed Room - Rs 1,300/night</option>
                             </select>
                         </label>
                         <label>
@@ -692,9 +678,8 @@
 
     <script>
         const rooms = {
-            "Standard Double Room": 1200,
-            "Deluxe AC Room": 1800,
-            "Family Suite": 2500
+            "AC Double Bed Room": 1700,
+            "Non-AC Double Bed Room": 1300
         };
 
         const bookingForm = document.getElementById("bookingForm");
