@@ -526,7 +526,7 @@
                     <p class="eyebrow">Rooms</p>
                     <h2>Choose your room type.</h2>
                 </div>
-                <p>Choose between AC and Non-AC double-bed rooms. The hotel team can confirm exact availability and payment details on WhatsApp.</p>
+                <p>Choose between AC, Non-AC and Super Deluxe rooms. The hotel team can confirm exact availability and payment details on WhatsApp.</p>
             </div>
             <div class="room-grid">
                 <article class="room-card">
@@ -560,6 +560,22 @@
                         <button type="button" data-room="Non-AC Double Bed Room">Book this room</button>
                     </div>
                 </article>
+
+                <article class="room-card">
+                    <img src="Images/rooms/suite-room.jfif" alt="Super Deluxe room at Kanak Resident and Hotel">
+                    <div class="room-body">
+                        <h3>Super Deluxe Room</h3>
+                        <p>Spacious premium room with AC comfort, double bed and extra seating for a more relaxed stay.</p>
+                        <div class="room-meta">
+                            <span>2 guests</span>
+                            <span>AC</span>
+                            <span>Double bed</span>
+                            <span>Premium space</span>
+                        </div>
+                        <div class="price">Rs 2,000 <small>/ night</small></div>
+                        <button type="button" data-room="Super Deluxe Room">Book this room</button>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -579,6 +595,7 @@
                             <select id="roomType" required>
                                 <option value="AC Double Bed Room">AC Double Bed Room - Rs 1,700/night</option>
                                 <option value="Non-AC Double Bed Room">Non-AC Double Bed Room - Rs 1,300/night</option>
+                                <option value="Super Deluxe Room">Super Deluxe Room - Rs 2,000/night</option>
                             </select>
                         </label>
                         <label>
@@ -679,7 +696,8 @@
     <script>
         const rooms = {
             "AC Double Bed Room": 1700,
-            "Non-AC Double Bed Room": 1300
+            "Non-AC Double Bed Room": 1300,
+            "Super Deluxe Room": 2000
         };
 
         const bookingForm = document.getElementById("bookingForm");
