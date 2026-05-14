@@ -3,231 +3,846 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanak Resident and Hotel</title>
+    <title>Kanak Resident and Hotel | Rooms, Banquet and Booking</title>
     <style>
+        :root {
+            --brand: #d97706;
+            --brand-dark: #92400e;
+            --accent: #0f766e;
+            --ink: #1f2937;
+            --muted: #667085;
+            --line: #e6e0d8;
+            --paper: #fffaf2;
+            --white: #ffffff;
+            --shadow: 0 16px 40px rgba(72, 48, 22, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
         }
-        header {
-            background: linear-gradient(135deg, #ff9900, #ffcc33);
-            padding: 30px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-in-out;
-        }
-        header h1::after {
-            content: "Welcome to Kanak Resident and Hotel";
+
+        img {
             display: block;
-            font-size: 1.2em;
-            font-weight: lighter;
-            color: #ffebcc;
-            animation: slideIn 2s ease-in-out;
+            max-width: 100%;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        a {
+            color: inherit;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .content {
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .gallery {
+        header {
+            min-height: 88vh;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            align-items: end;
+            background:
+                linear-gradient(90deg, rgba(33, 24, 12, 0.78), rgba(33, 24, 12, 0.2)),
+                url("Images/Kanak.jpg") center/cover;
+            color: var(--white);
         }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-        .info {
-            margin-top: 30px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .info h2 {
-            margin-top: 0;
-            font-size: 1.8em;
-            color: #ff9900;
-        }
-        .info p {
-            margin: 10px 0;
-            line-height: 1.6;
-        }
-        .map {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .map iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .contact {
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 16px clamp(18px, 4vw, 54px);
+            background: rgba(31, 25, 16, 0.82);
+            backdrop-filter: blur(12px);
         }
-        .contact img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
+
+        nav strong {
+            font-size: 1rem;
+            letter-spacing: 0;
+            text-transform: uppercase;
         }
-        .contact a {
+
+        nav div {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        nav a {
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
         }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: linear-gradient(135deg, #ff9900, #ffcc33);
-            color: white;
-            font-size: 1em;
-            margin-top: 30px;
+
+        .nav-cta,
+        .button,
+        button {
+            min-height: 42px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--accent);
+            color: var(--white);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font: inherit;
+            font-weight: 800;
+            padding: 10px 16px;
+            text-decoration: none;
         }
-        .description {
-            margin-top: 30px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .hero-content {
+            width: min(1120px, calc(100% - 36px));
+            margin: 0 auto;
+            padding: 120px 0 70px;
         }
-        .description h2 {
-            font-size: 1.8em;
-            color: #ff9900;
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: #fed7aa;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
         }
-        .description p {
-            margin: 10px 0;
-            line-height: 1.6;
+
+        h1,
+        h2,
+        h3 {
+            color: inherit;
+            line-height: 1.08;
+            margin: 0;
         }
-        .services {
-            margin-top: 30px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        h1 {
+            max-width: 820px;
+            font-size: clamp(2.8rem, 8vw, 6.8rem);
+            letter-spacing: 0;
         }
-        .services h2 {
-            font-size: 1.8em;
-            color: #ff9900;
+
+        .hero-content p:not(.eyebrow) {
+            max-width: 650px;
+            margin: 20px 0 28px;
+            color: #fff7ed;
+            font-size: 1.12rem;
         }
-        .services div {
-            margin: 10px 0;
-            line-height: 1.6;
-            font-size: 1.1em;
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        .about-image {
-            margin: 20px 0;
-            text-align: center;
+
+        .button.secondary {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.35);
         }
-        .about-image img {
+
+        main {
+            width: min(1120px, calc(100% - 36px));
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 64px 0 0;
+            scroll-margin-top: 90px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-heading h2 {
+            color: var(--brand-dark);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+        }
+
+        .section-heading p {
+            max-width: 520px;
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .panel,
+        .room-card,
+        .booking-card,
+        .info-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .about-grid .panel {
+            padding: 28px;
+        }
+
+        .about-grid img {
             width: 100%;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .service {
+            min-height: 92px;
+            border-radius: 8px;
+            background: #fff3df;
+            padding: 16px;
+            color: var(--brand-dark);
+            font-weight: 800;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .room-card {
+            overflow: hidden;
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .room-body {
+            padding: 20px;
+        }
+
+        .room-body h3 {
+            color: var(--brand-dark);
+            font-size: 1.35rem;
+        }
+
+        .room-body p {
+            color: var(--muted);
+            min-height: 72px;
+        }
+
+        .room-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0 18px;
+        }
+
+        .room-meta span {
+            border-radius: 999px;
+            background: #fef3c7;
+            color: #7c2d12;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 6px 10px;
+        }
+
+        .price {
+            margin-bottom: 18px;
+            color: var(--ink);
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+
+        .price small {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .booking-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .booking-card {
+            padding: 24px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: grid;
+            gap: 7px;
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 46px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fffdf8;
+            color: var(--ink);
+            font: inherit;
+            padding: 10px 12px;
+        }
+
+        textarea {
+            min-height: 92px;
+            resize: vertical;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .summary-box {
+            margin: 18px 0;
+            border-radius: 8px;
+            background: #ecfdf5;
+            color: #064e3b;
+            padding: 16px;
+            font-weight: 800;
+        }
+
+        .booking-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .clear-button {
+            background: #6b7280;
+        }
+
+        .booking-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .booking-item {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fffdf8;
+            padding: 14px;
+        }
+
+        .booking-item strong {
+            color: var(--brand-dark);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 24px;
+        }
+
+        .info-card h2 {
+            color: var(--brand-dark);
+            margin-bottom: 12px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            color: var(--ink);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .contact-link img {
+            width: 28px;
+            height: 28px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 380px;
+            border: 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        footer {
+            margin-top: 64px;
+            padding: 22px;
+            background: var(--brand-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        @media (max-width: 860px) {
+            nav {
+                position: absolute;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            nav div,
+            .section-heading,
+            .booking-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .about-grid,
+            .room-grid,
+            .booking-layout,
+            .info-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .services,
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding-top: 170px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Kanak Resident and Hotel</h1>
+    <header id="home">
+        <nav aria-label="Main navigation">
+            <strong>Kanak Resident and Hotel</strong>
+            <div>
+                <a href="#rooms">Rooms</a>
+                <a href="#booking">Booking</a>
+                <a href="#contact">Contact</a>
+                <a class="nav-cta" href="#booking">Book Now</a>
+            </div>
+        </nav>
+        <div class="hero-content">
+            <p class="eyebrow">Hotel Kanak Dham, Bagodar</p>
+            <h1>Comfortable rooms, banquet space and warm hospitality.</h1>
+            <p>Plan a stay, host a function, or reserve rooms directly from this website with a quick booking request.</p>
+            <div class="hero-actions">
+                <a class="button" href="#booking">Check room booking</a>
+                <a class="button secondary" href="https://wa.me/919142350427" target="_blank" rel="noreferrer">WhatsApp hotel</a>
+            </div>
+        </div>
     </header>
-    <div class="content">
-        <div class="description">
-            <h2>About Us</h2>
-            <p>Kanak Resident and Hotel offers a perfect blend of luxury and comfort. We provide facilities for a memorable staycation, a stunning wedding banquet hall for your special occasions, and a variety of delicious food options to cater to your taste buds.</p>
-            <p>Experience unmatched hospitality with us, whether you're here for leisure, celebrations, or dining.</p>
-            <div class="about-image">
-                <img src="images/Kanak.jpg" alt="Kanak Resident and Hotel Front View">
+
+    <main>
+        <section id="about">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">About us</p>
+                    <h2>Stay, dine and celebrate in one place.</h2>
+                </div>
+                <p>Kanak Resident and Hotel offers comfortable rooms, banquet arrangements, food service and event support near NH 19 in Bagodar, Jharkhand.</p>
             </div>
-        </div>
-        <div class="services">
-            <h2>Services Provided</h2>
-            <div>Spacious and elegant banquet hall suitable for weddings, receptions, and corporate events.</div>
-            <div>Comfortable and luxurious rooms for a relaxing staycation.</div>
-            <div>Multi-cuisine restaurant serving delicious and hygienic food.</div>
-            <div>Customized catering services for events and gatherings.</div>
-            <div>Professional event planning and decoration services.</div>
-            <div>Ample parking space for guests.</div>
-        </div>
-        <div class="gallery">
-            <img src="images/Image1.jpg" alt="Hotel Image 1">
-            <img src="images/Image2.jpg" alt="Hotel Image 2">
-            <img src="images/Image3.jpg" alt="Hotel Image 3">
-            <img src="images/Image4.jpg" alt="Hotel Image 4">
-            <img src="images/Image5.jpg" alt="Hotel Image 5">
-            <img src="images/Image6.jpg" alt="Hotel Image 6">
-            <img src="images/Image7.jpg" alt="Hotel Image 7">
-            <img src="images/Image8.jpg" alt="Hotel Image 8">
-        </div>
-        <div class="info">
-            <h2>Contact</h2>
-            <div class="contact">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-                <a href="https://wa.me/919142350427" target="_blank">+91 9142350427</a>
+            <div class="about-grid">
+                <div class="panel">
+                    <h3>Services Provided</h3>
+                    <div class="services">
+                        <div class="service">AC and non-AC rooms</div>
+                        <div class="service">Wedding banquet hall</div>
+                        <div class="service">Restaurant and food</div>
+                        <div class="service">Catering service</div>
+                        <div class="service">Event decoration</div>
+                        <div class="service">Guest parking</div>
+                    </div>
+                </div>
+                <img src="Images/Kanak.jpg" alt="Kanak Resident and Hotel front view">
             </div>
-            <div class="contact">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-                <a href="https://wa.me/917070639025" target="_blank">+91 7070639025</a>
+        </section>
+
+        <section id="rooms">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Rooms</p>
+                    <h2>Choose your room type.</h2>
+                </div>
+                <p>Use the booking form to request dates. The hotel team can confirm exact availability, tariff and payment details on WhatsApp.</p>
             </div>
-        </div>
-        <div class="info">
-            <h2>Address</h2>
-            <p><strong>Address:</strong> Hotel Kanak Dham, Bagodar, Jharipool NH 19, Near Ghagra Science College, District Giridih, Jharkhand</p>
-        </div>
-        <div class="map">
-            <h2>Find Us on Google Maps</h2>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.997360632617!2d85.863629398628!3d24.06894980194134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDA0JzA4LjIiTiA4NcKwNTEnNDguOSJF!5e0!3m2!1sen!2sin!4v1701234567890!5m2!1sen!2sin" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </div>
+            <div class="room-grid">
+                <article class="room-card">
+                    <img src="Images/rooms/standard-room.jfif" alt="Standard double room at Kanak Resident and Hotel">
+                    <div class="room-body">
+                        <h3>Standard Double Room</h3>
+                        <p>A neat double-bed room for short stays, business travel and family stopovers.</p>
+                        <div class="room-meta">
+                            <span>2 guests</span>
+                            <span>Double bed</span>
+                            <span>Attached bath</span>
+                        </div>
+                        <div class="price">From Rs 1,200 <small>/ night</small></div>
+                        <button type="button" data-room="Standard Double Room">Book this room</button>
+                    </div>
+                </article>
+
+                <article class="room-card">
+                    <img src="Images/rooms/deluxe-room.jfif" alt="Deluxe AC room at Kanak Resident and Hotel">
+                    <div class="room-body">
+                        <h3>Deluxe AC Room</h3>
+                        <p>Spacious room with AC, sitting space and a comfortable layout for longer stays.</p>
+                        <div class="room-meta">
+                            <span>2 guests</span>
+                            <span>AC</span>
+                            <span>Sitting area</span>
+                        </div>
+                        <div class="price">From Rs 1,800 <small>/ night</small></div>
+                        <button type="button" data-room="Deluxe AC Room">Book this room</button>
+                    </div>
+                </article>
+
+                <article class="room-card">
+                    <img src="Images/rooms/suite-room.jfif" alt="Family suite room at Kanak Resident and Hotel">
+                    <div class="room-body">
+                        <h3>Family Suite</h3>
+                        <p>A larger room option with sofa seating, ideal for families and wedding guests.</p>
+                        <div class="room-meta">
+                            <span>3-4 guests</span>
+                            <span>AC</span>
+                            <span>Lounge seating</span>
+                        </div>
+                        <div class="price">From Rs 2,500 <small>/ night</small></div>
+                        <button type="button" data-room="Family Suite">Book this room</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="booking">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Booking system</p>
+                    <h2>Request a room booking.</h2>
+                </div>
+                <p>Bookings are saved in this browser and sent as a WhatsApp request to the hotel. Final confirmation is given by the hotel team.</p>
+            </div>
+            <div class="booking-layout">
+                <form class="booking-card" id="bookingForm">
+                    <div class="form-grid">
+                        <label>
+                            Room type
+                            <select id="roomType" required>
+                                <option value="Standard Double Room">Standard Double Room</option>
+                                <option value="Deluxe AC Room">Deluxe AC Room</option>
+                                <option value="Family Suite">Family Suite</option>
+                            </select>
+                        </label>
+                        <label>
+                            Guests
+                            <select id="guests" required>
+                                <option value="1">1 guest</option>
+                                <option value="2" selected>2 guests</option>
+                                <option value="3">3 guests</option>
+                                <option value="4">4 guests</option>
+                                <option value="5+">5+ guests</option>
+                            </select>
+                        </label>
+                        <label>
+                            Check-in
+                            <input id="checkIn" type="date" required>
+                        </label>
+                        <label>
+                            Check-out
+                            <input id="checkOut" type="date" required>
+                        </label>
+                        <label>
+                            Guest name
+                            <input id="guestName" type="text" placeholder="Your full name" required>
+                        </label>
+                        <label>
+                            Phone number
+                            <input id="guestPhone" type="tel" placeholder="+91..." required>
+                        </label>
+                        <label class="full">
+                            Special request
+                            <textarea id="notes" placeholder="Arrival time, extra bed, banquet requirement, food preference..."></textarea>
+                        </label>
+                    </div>
+                    <div class="summary-box" id="bookingSummary">Select dates to see the booking summary.</div>
+                    <div class="booking-actions">
+                        <button type="submit">Save and send on WhatsApp</button>
+                        <button class="clear-button" type="button" id="clearBookings">Clear saved bookings</button>
+                    </div>
+                </form>
+
+                <aside class="booking-card">
+                    <h3>Saved booking requests</h3>
+                    <p>Recent requests stay here on this device for quick reference.</p>
+                    <div class="booking-list" id="bookingList"></div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Room photos</p>
+                    <h2>See the stay experience.</h2>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="Images/rooms/room-bed-detail.jfif" alt="Room bed and linen">
+                <img src="Images/rooms/room-sitting-area.jfif" alt="Room sitting area">
+                <img src="Images/rooms/suite-lounge.jfif" alt="Suite lounge seating">
+                <img src="Images/rooms/attached-bath.jfif" alt="Attached bathroom with geyser">
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h2>Contact</h2>
+                    <a class="contact-link" href="https://wa.me/919142350427" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+                        +91 9142350427
+                    </a>
+                    <a class="contact-link" href="https://wa.me/917070639025" target="_blank" rel="noreferrer">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+                        +91 7070639025
+                    </a>
+                </div>
+                <div class="info-card">
+                    <h2>Address</h2>
+                    <p><strong>Hotel Kanak Dham</strong><br>Bagodar, Jharipool NH 19, Near Ghagra Science College, District Giridih, Jharkhand</p>
+                </div>
+            </div>
+            <section aria-label="Map" style="padding-top: 24px;">
+                <iframe
+                    title="Kanak Resident and Hotel location map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.997360632617!2d85.863629398628!3d24.06894980194134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDA0JzA4LjIiTiA4NcKwNTEnNDguOSJF!5e0!3m2!1sen!2sin!4v1701234567890!5m2!1sen!2sin"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </section>
+        </section>
+    </main>
+
     <footer>
-        <p>&copy; 2025 Hotel Kanak Dham. All rights reserved.</p>
+        <p>&copy; 2026 Hotel Kanak Dham. All rights reserved.</p>
     </footer>
+
+    <script>
+        const rooms = {
+            "Standard Double Room": 1200,
+            "Deluxe AC Room": 1800,
+            "Family Suite": 2500
+        };
+
+        const bookingForm = document.getElementById("bookingForm");
+        const roomType = document.getElementById("roomType");
+        const guests = document.getElementById("guests");
+        const checkIn = document.getElementById("checkIn");
+        const checkOut = document.getElementById("checkOut");
+        const guestName = document.getElementById("guestName");
+        const guestPhone = document.getElementById("guestPhone");
+        const notes = document.getElementById("notes");
+        const bookingSummary = document.getElementById("bookingSummary");
+        const bookingList = document.getElementById("bookingList");
+        const clearBookings = document.getElementById("clearBookings");
+        const storageKey = "kanakHotelBookings";
+
+        function todayIso() {
+            const today = new Date();
+            today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+            return today.toISOString().split("T")[0];
+        }
+
+        function getNights() {
+            if (!checkIn.value || !checkOut.value) {
+                return 0;
+            }
+
+            const start = new Date(checkIn.value);
+            const end = new Date(checkOut.value);
+            const nights = Math.round((end - start) / (1000 * 60 * 60 * 24));
+            return nights > 0 ? nights : 0;
+        }
+
+        function getBookings() {
+            return JSON.parse(localStorage.getItem(storageKey) || "[]");
+        }
+
+        function saveBookings(bookings) {
+            localStorage.setItem(storageKey, JSON.stringify(bookings));
+        }
+
+        function updateSummary() {
+            const nights = getNights();
+            const price = rooms[roomType.value] || 0;
+
+            if (!nights) {
+                bookingSummary.textContent = "Select valid check-in and check-out dates to see the booking summary.";
+                return;
+            }
+
+            const total = nights * price;
+            bookingSummary.textContent = `${roomType.value} for ${guests.value} guest(s), ${nights} night(s). Estimated room total: Rs ${total.toLocaleString("en-IN")}.`;
+        }
+
+        function renderBookings() {
+            const bookings = getBookings();
+
+            if (!bookings.length) {
+                bookingList.innerHTML = "<p>No saved booking requests yet.</p>";
+                return;
+            }
+
+            bookingList.innerHTML = bookings
+                .slice()
+                .reverse()
+                .map((booking) => `
+                    <div class="booking-item">
+                        <strong>${booking.room}</strong><br>
+                        ${booking.name} | ${booking.phone}<br>
+                        ${booking.checkIn} to ${booking.checkOut} | ${booking.guests} guest(s)<br>
+                        Estimated: Rs ${booking.total.toLocaleString("en-IN")}
+                    </div>
+                `)
+                .join("");
+        }
+
+        function buildWhatsappMessage(booking) {
+            return [
+                "Hello Kanak Resident and Hotel, I want to book a room.",
+                `Room: ${booking.room}`,
+                `Name: ${booking.name}`,
+                `Phone: ${booking.phone}`,
+                `Guests: ${booking.guests}`,
+                `Check-in: ${booking.checkIn}`,
+                `Check-out: ${booking.checkOut}`,
+                `Nights: ${booking.nights}`,
+                `Estimated total: Rs ${booking.total.toLocaleString("en-IN")}`,
+                booking.notes ? `Special request: ${booking.notes}` : ""
+            ].filter(Boolean).join("\n");
+        }
+
+        document.querySelectorAll("[data-room]").forEach((button) => {
+            button.addEventListener("click", () => {
+                roomType.value = button.dataset.room;
+                updateSummary();
+                document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+        [roomType, guests, checkIn, checkOut].forEach((field) => {
+            field.addEventListener("input", updateSummary);
+        });
+
+        bookingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const nights = getNights();
+
+            if (!nights) {
+                bookingSummary.textContent = "Check-out date must be after check-in date.";
+                return;
+            }
+
+            const price = rooms[roomType.value] || 0;
+            const booking = {
+                id: Date.now(),
+                room: roomType.value,
+                guests: guests.value,
+                checkIn: checkIn.value,
+                checkOut: checkOut.value,
+                name: guestName.value.trim(),
+                phone: guestPhone.value.trim(),
+                notes: notes.value.trim(),
+                nights,
+                total: nights * price
+            };
+
+            const bookings = getBookings();
+            bookings.push(booking);
+            saveBookings(bookings);
+            renderBookings();
+            updateSummary();
+
+            const whatsappUrl = `https://wa.me/919142350427?text=${encodeURIComponent(buildWhatsappMessage(booking))}`;
+            window.open(whatsappUrl, "_blank", "noopener");
+        });
+
+        clearBookings.addEventListener("click", () => {
+            saveBookings([]);
+            renderBookings();
+        });
+
+        checkIn.min = todayIso();
+        checkOut.min = todayIso();
+        checkIn.addEventListener("input", () => {
+            checkOut.min = checkIn.value || todayIso();
+        });
+
+        updateSummary();
+        renderBookings();
+    </script>
 </body>
 </html>
